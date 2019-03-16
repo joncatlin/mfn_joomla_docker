@@ -2,7 +2,7 @@ version: '3.1'
 
 services:
   joomla:
-    image: joomla:3.9.2-php7.1-apache
+    image: joomla:3.9.4-php7.1-apache
     restart: always
     ports:
       - 8080:80
@@ -10,17 +10,26 @@ services:
       JOOMLA_DB_HOST: joomladb
       JOOMLA_DB_PASSWORD: mfnroot
     volumes:
-      - ~/temp/mfn-joomla:/var/www/html
+      -  /mnt/swarm-shared/mfn-joomla:/var/www/html
     networks:
       - joomla-net
 
   joomladb:
-    image: mysql:5.7.21
+    image: mysql:5.7.25
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: mfnroot
+      MYSQL_DATABASE: joomla
     volumes:
-      - ~/temp/mfn-mysql:/var/lib/mysql
+      -  /mnt/swarm-shared/mfn-mysql:/var/lib/mysql
+    networks:
+      - joomla-net
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8081:8080
     networks:
       - joomla-net
 
