@@ -25,11 +25,6 @@ services:
     networks:
       - joomla-net
 
-    environment:
-PMA_HOST=joomladb
-MYSQL_ROOT_PASSWORD=mfnroot
-
-
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     restart: always
