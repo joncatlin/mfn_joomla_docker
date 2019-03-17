@@ -31,6 +31,7 @@ services:
     environment:
       PMA_HOST: joomladb
       MYSQL_ROOT_PASSWORD: mfnroot
+      PMA_ARBITRARY: 1
     ports:
       - 8081:80
     networks:
